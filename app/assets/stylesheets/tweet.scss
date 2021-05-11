@@ -1,0 +1,278 @@
+.icon {
+  $size: 22.5px;
+  width: $size;
+  height: $size;
+}
+
+.editor {
+  display: flex;
+  flex-flow: column nowrap;
+  width: 100%;
+  height: auto;
+  padding: 5px;
+  border: 1px solid #c5c5c5;
+  border-radius: 3px;
+
+  &:focus {
+    border-color: $editor-color;
+  }
+}
+
+.tweet-text {
+  textarea {
+    min-width: 100%;
+    min-height: 100px;
+  }
+}
+
+.editor-button.row {
+  justify-content: flex-end;
+  align-items: center;
+  padding: 5px;
+  padding-bottom: 0;
+}
+
+.editor-button:not(.row) {
+  width: 70px;
+  height: 32px;
+  margin-left: 5px;
+  font-weight: 600;
+  border-radius: 24px;
+  border: 1px solid #ffffff;
+
+  &:hover {
+    background-color: $light-gray;
+    border-color: $light-gray;
+  }
+}
+
+.tweet,
+.poster.row {
+  padding-top: 12px;
+}
+
+.dot-menu {
+  margin-left: auto;
+  font-weight: 900;
+  font-size: 17px;
+  color: $blue-gray;
+  background-color: unset;
+}
+
+.tweet-sidebar {
+  flex-basis: 88px;
+  min-width: 68px;
+  border: $border;
+  border-top: unset;
+}
+
+.thread.column {
+  flex-basis: 600px;
+}
+
+.page-header {
+  height: 54px;
+  border-bottom: $border;
+}
+
+.tweet.container {
+  padding: 0 16px;
+}
+
+.tweet.focus.text {
+  font-size: 23px;
+  line-height: 28px;
+  color: #10141a;
+}
+
+.name.column {
+  height: 40px;
+
+  * {
+    height: 50%;
+  }
+}
+
+.display-name {
+  font-weight: 700;
+}
+
+.user-name {
+  color: $blue-gray;
+}
+
+.user-icon {
+  $size: 50px;
+  width: $size;
+  height: $size;
+  margin-right: 12px;
+  border-radius: 50%;
+  border: 1px solid #ffffff;
+}
+
+.date.focus {
+  $padding: 16px;
+  align-items: flex-start;
+  height: 50px;
+  padding-top: $padding;
+  padding-bottom: $padding;
+}
+
+.tweet-options {
+  $padding: 14px;
+  justify-content: space-around;
+  padding-top: $padding;
+  padding-bottom: $padding;
+  fill: $blue-gray;
+}
+
+.tweet-metadata.row {
+  $padding: 16px;
+  padding-top: $padding;
+  padding-bottom: $padding;
+}
+
+.tweet-metadata.container {
+  margin-right: 20px;
+
+  .counter {
+    margin-right: 5px;
+  }
+}
+
+.time.container {
+  display: flex;
+  height: 22px;
+  padding-top: 2px;
+  padding-right: 4px;
+  border: 1px solid $editor-color;
+  border-radius: $border-radius;
+}
+
+.time:not(.container) {
+  $size: 22px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: $size;
+  margin-right: 2px;
+  text-align: center;
+  background-color: unset;
+}
+
+span.time.separator {
+  width: 5px;
+  margin-right: 2px;
+}
+
+.container.source-label {
+  &.active {
+    display: flex;
+    flex-flow: column nowrap;
+    margin-top: -5px;
+    padding-top: 5px;
+    border: 1px solid $editor-color;
+    border-radius: $border-radius;
+    background-color: #ffffff;
+
+    .header.source-label {
+      padding: 0 5px;
+    }
+  }
+}
+
+.child.source-label {
+  display: flex;
+  align-items: center;
+  height: 20px;
+  padding: 0 5px;
+
+  &.active {
+    background-color: $selected-color;
+  }
+
+  &:hover:not(.active) {
+    background-color: $light-gray;
+  }
+}
+
+input.source-label {
+  max-width: 100%;
+  width: 130px;
+  height: 24px;
+  margin-top: -2px;
+  padding-top: 4px;
+  padding-left: 4px;
+  border: 1px solid $editor-color;
+  border-radius: $border-radius;
+}
+
+.tweet-metadata.container.active {
+  display: flex;
+  align-items: center;
+  margin-top: -5px;
+
+  span {
+    user-select: none;
+  }
+}
+
+.tweet-metadata.form {
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+input.tweet-metadata {
+  max-width: 100%;
+  width: 70px;
+  height: 100%;
+  height: 34px;
+  margin-top: -2px;
+  padding: 3px 4px;
+  padding-bottom: unset;
+  border: 1px solid $editor-color;
+  border-right: unset;
+  border-top-left-radius: $border-radius;
+  border-bottom-left-radius: $border-radius;
+  background-color: unset;
+}
+
+.tweet-metadata.arrow-container {
+  display: flex;
+  flex-flow: column nowrap;
+  max-height: 34px;
+  margin-top: -1px;
+  margin-right: 5px;
+  padding-right: 2px;
+  border: 1px solid $editor-color;
+  border-left: unset;
+  border-top-right-radius: $border-radius;
+  border-bottom-right-radius: $border-radius;
+
+  .arrow {
+    border: 1px solid $light-gray;
+  }
+}
+
+.drop-form.container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 100%;
+  min-height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.drop-form.row {
+  justify-content: center;
+  align-items: center;
+  width: 400px;
+  height: 100px;
+  border: 2px dashed #000000;
+  background-color: rgba(255, 255, 255, 1);
+}

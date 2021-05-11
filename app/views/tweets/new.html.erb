@@ -1,1 +1,5 @@
-<%= react_component("Thread", {}, class: "")%>
+<div class="tweet-sidebar"></div>
+<div class="thread column side-border">
+  <%= react_component("Header", {}, class: "page-header")%>
+  <%= react_component("Thread", {tweet: @tweet}, class: "thread")%>
+</div>

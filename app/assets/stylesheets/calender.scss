@@ -1,0 +1,147 @@
+.calender-header {
+  position: relative;
+  padding: 3px 3px 0 3px;
+  margin: -3px -3px 0 -3px;
+
+  &.active {
+    $border-width: 1px;
+    $margin-width: -3 + -1 * $border-width;
+    display: flex;
+    justify-content: center;
+    min-width: 80px;
+    height: 20px;
+    margin-top: $margin-width;
+    margin-left: $margin-width;
+    margin-right: $margin-width;
+    border: $border-width solid $editor-color;
+    border-radius: $border-radius $border-radius 0 0;
+    border-top-right-radius: unset;
+    user-select: none;
+    z-index: 6;
+
+    * {
+      z-index: 6;
+      background-color: #ffffff;
+    }
+  }
+}
+
+.calender-body {
+  position: absolute;
+  top: calc(100% + 1px);
+  left: -1px;
+  z-index: 6;
+  display: flex;
+  width: calc(100% + 2px);
+}
+
+.calender-months.container {
+  display: flex;
+  flex-flow: column nowrap;
+  width: 100%;
+  max-height: 127px;
+  border: 1px solid $editor-color;
+  border-top: unset;
+  border-bottom-left-radius: $border-radius;
+
+  overflow-y: scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
+}
+
+.calender-month {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 3px;
+
+  &:hover {
+    background-color: $light-gray;
+  }
+
+  &.selected {
+    background-color: $selected-color;
+  }
+}
+
+.calender-days.container {
+  position: absolute;
+  top: 0;
+  left: calc(100%);
+  display: flex;
+  flex-flow: row wrap;
+  width: 250px * 0.7;
+  padding: 3px;
+  padding-top: 8px;
+  margin-bottom: auto;
+
+  border: 1px solid $editor-color;
+  border-top: unset;
+  border-left: unset;
+  border-bottom-right-radius: $border-radius;
+}
+
+.calender-day {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-basis: 1 / 7 * 100%;
+  padding-top: 3px;
+  border: 1px solid #ffffff;
+  border-radius: $border-radius;
+
+  &:hover {
+    background-color: $shadow;
+    border-color: $light-gray;
+  }
+
+  &.selected {
+    background-color: $selected-color;
+  }
+}
+
+.calender-year.container {
+  position: absolute;
+  top: -1px;
+  left: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 250px * 0.7 + 1px;
+  height: 20px;
+  border: 1px solid $editor-color;
+  border-top-right-radius: $border-radius;
+}
+
+.calender-year:not(.container) {
+  height: 16px;
+  margin: 0 3px;
+}
+
+.calender-year.container > .arrow {
+  $size: 16px;
+  width: $size;
+  height: $size;
+  border-radius: 50%;
+  border: 1px solid #ffffff;
+
+  &:hover {
+    border-color: $selected-color;
+    background-color: $selected-color;
+  }
+}
+
+.arrow.left {
+  transform: rotate(90deg);
+}
+
+.arrow.right {
+  transform: rotate(-90deg);
+}
