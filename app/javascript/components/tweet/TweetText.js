@@ -5,17 +5,30 @@ import Form from "./Form";
 const TweetText = (props) => {
   const [text, setText] = useState(props.body);
   const [previousText, setPreviousText] = useState(props.body);
+  const [overflow, setOverFlow] = useState(false);
 
   return (
     <Form
       editor={(toggleFunc) => (
-        <div className="tweet-text editor">
+        <div className={`tweet-text editor${overflow ? " red-border" : ""}`}>
           <textarea
             className="bottom-border"
-            onChange={(e) => setText(e.target.value)}
+            onChange={(e) => {
+              console.log(typeof e.target.value, e.target.value.length > 280);
+              setOverFlow(e.target.value.length > 280);
+              setText(e.target.value);
+            }}
             defaultValue={text}
           ></textarea>
           <div className="editor-button row">
+            {overflow ? (
+              <div className="overflow-message">
+                <div>Tweet length over 280 characters.</div>
+                <div>Currently {text.length}</div>
+              </div>
+            ) : (
+              ""
+            )}
             <button
               className="editor-button"
               onClick={() => {

@@ -1,0 +1,51 @@
+.page-header {
+  justify-content: space-around;
+  align-items: center;
+  padding: 0 10px;
+}
+
+.header-button {
+  $size: 40px;
+  $time: 0.5s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: $size;
+  min-height: $size;
+  height: $size;
+  border: 1px solid #ffffff;
+  border-radius: 30px;
+  font-weight: 600;
+  background-color: $light-gray;
+  transition: width $time, border-color $time;
+  color: #000000;
+  overflow: hidden;
+  span {
+    display: none;
+  }
+
+  &:hover {
+    justify-content: flex-start;
+  }
+}
+
+.expand {
+  justify-content: flex-start;
+  width: 100px;
+  border-color: $selected-color;
+  background-color: $selected-color;
+  padding: 0 15px;
+
+  span {
+    display: flex;
+    margin-left: 5px;
+  }
+
+  &.long {
+    width: 135px;
+  }
+
+  &.xl-long {
+    width: 150px;
+  }
+}

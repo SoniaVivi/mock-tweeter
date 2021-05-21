@@ -6,6 +6,8 @@
   src: url(font-path("NimbusSansL-Bol.otf"));
   border: unset;
   font-size: 15px;
+  word-break: break-word;
+  text-decoration: unset;
 
   &:focus {
     outline: unset;
@@ -39,6 +41,10 @@
 .side-border {
   border-left: $border;
   border-right: $border;
+}
+
+.red-border {
+  border-color: #ff4422;
 }
 
 .dot-divider {
@@ -75,4 +81,17 @@
   &.up {
     transform: rotate(180deg);
   }
+}
+
+.popup.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  height: 100%;
+}
+
+.popup {
+  font-size: 18px;
+  font-weight: 600;
 }

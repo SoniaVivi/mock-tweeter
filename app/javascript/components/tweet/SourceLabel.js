@@ -6,6 +6,7 @@ const SourceLabel = (props) => {
   const [showEditor, setShowEditor] = useState(false);
   const [showForm, setShowForm] = useState(false);
   const [currentLabel, setCurrentLabel] = useState(props.label);
+  const toggle = () => setShowEditor((prevState) => !prevState);
   const labels = [
     "Twitter for iPhone",
     "Twitter Web App",
@@ -17,7 +18,18 @@ const SourceLabel = (props) => {
     <div className={`source-label container${showEditor ? " active" : ""}`}>
       {!showForm ? (
         <span
-          onClick={() => setShowEditor((prevState) => !prevState)}
+          onClick={(e) => {
+            onOutsideClick(
+              e,
+              () => {
+                setShowEditor(false);
+                setShowForm(false);
+              },
+              () => {},
+              true
+            );
+            toggle();
+          }}
           className="source-label header"
         >
           {currentLabel}
@@ -39,11 +51,12 @@ const SourceLabel = (props) => {
             <div
               onClick={(e) => {
                 if (label == "Custom") {
-                  onOutsideClick(
-                    { target: e.target.parentNode.parentNode },
-                    () => setShowForm((prevState) => !prevState),
-                    () => {}
-                  );
+                  setShowForm(true);
+                  // onOutsideClick(
+                  //   { target: e.target.parentNode.parentNode },
+                  //   () => setShowForm((prevState) => !prevState),
+                  //   () => {}
+                  // );
                 } else {
                   setCurrentLabel(label);
                   props.setLabel(label);
