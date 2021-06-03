@@ -15,5 +15,6 @@ class Tweet < ApplicationRecord
     self.label = 'Twitter Web App'
     self.retweets = 18
     self.likes = 722
+    self.profile_image = '/assets/cat.jpg'
   end
 end

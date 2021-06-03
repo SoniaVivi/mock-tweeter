@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 const ProfileForm = (props) => {
   const [showEditor, setShowEditor] = useState(false);
-  const [imgURL, setImgURL] = useState("/assets/cat.jpg");
+  const [imgURL, setImgURL] = useState(props.profileImage);
   const toggle = () => setShowEditor((prevState) => !prevState);
 
   if (!showEditor) {
@@ -30,6 +30,7 @@ const ProfileForm = (props) => {
               let fr = new FileReader();
               fr.onload = () => {
                 setImgURL(fr.result);
+                props.setProfileImage(fr.result);
                 toggle();
               };
               fr.readAsDataURL(file);

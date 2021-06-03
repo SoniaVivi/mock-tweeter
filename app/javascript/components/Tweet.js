@@ -26,8 +26,10 @@ const Tweet = (props) => {
   return (
     <div className="tweet container bottom-border">
       <div className="poster row">
-        {/*Tweet does not currently have a profile picture column present*/}
-        <ProfileForm />
+        <ProfileForm
+          profileImage={data.profileImage}
+          setProfileImage={createModifyAttributeFunction("profileImage")}
+        />
         <div className="name column">
           <NameForm
             name={data.displayName}
