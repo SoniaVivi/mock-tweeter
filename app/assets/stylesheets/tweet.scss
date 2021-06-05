@@ -1,3 +1,33 @@
+.tweet.text.top-level {
+  font-size: 23px;
+  line-height: 28px;
+  color: #10141a;
+
+  textarea {
+    min-width: 100%;
+    min-height: 100px;
+  }
+}
+
+.tweet.container {
+  display: flex;
+  padding: 0 16px;
+  padding-top: 12px;
+
+  &.top-level {
+    flex-flow: column nowrap;
+  }
+}
+
+.wrapper.reply {
+  display: flex;
+  flex-flow: column nowrap;
+
+  .tweet.text {
+    padding-top: 2px;
+  }
+}
+
 .icon {
   $size: 22.5px;
   width: 22px;
@@ -19,13 +49,6 @@
 
   &.red-border {
     border-color: #ff4422;
-  }
-}
-
-.tweet-text {
-  textarea {
-    min-width: 100%;
-    min-height: 100px;
   }
 }
 
@@ -61,8 +84,7 @@
   }
 }
 
-.tweet,
-.poster.row {
+.tweet {
   padding-top: 12px;
 }
 
@@ -90,15 +112,16 @@
   border-bottom: $border;
 }
 
-.tweet.container {
-  padding: 0 16px;
-}
+.name.container {
+  display: flex;
+  width: 100%;
+  padding-top: 5px;
 
-.tweet.focus.text {
-  word-break: break-word;
-  font-size: 23px;
-  line-height: 28px;
-  color: #10141a;
+  .dot-menu {
+    align-self: flex-start;
+    margin-left: auto;
+    height: 10px;
+  }
 }
 
 .name.column {
@@ -106,6 +129,12 @@
 
   * {
     height: 50%;
+  }
+}
+
+.name.row {
+  > *:first-child {
+    margin-right: 4px;
   }
 }
 
@@ -126,7 +155,7 @@
   border: 1px solid #ffffff;
 }
 
-.date.focus {
+.date {
   $padding: 16px;
   align-items: flex-start;
   height: 50px;
@@ -291,4 +320,21 @@ input.tweet-metadata {
   height: 100px;
   border: 2px dashed #000000;
   background-color: rgba(255, 255, 255, 1);
+}
+
+.replying-to.container {
+  margin-top: 3px;
+  color: $blue-gray;
+
+  a {
+    color: $blue;
+  }
+}
+
+.tweet-options.reply > img {
+  $size: 16px;
+  max-width: $size;
+  max-height: $size;
+  min-width: $size;
+  min-height: $size;
 }

@@ -9,7 +9,7 @@ const Svg = (props) => {
         width="16"
         height="16"
         fill="currentColor"
-        class="icon camera"
+        className="icon camera"
         viewBox="0 0 16 16"
       >
         <path d="M15 12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h1.172a3 3 0 0 0 2.12-.879l.83-.828A1 1 0 0 1 6.827 3h2.344a1 1 0 0 1 .707.293l.828.828A3 3 0 0 0 12.828 5H14a1 1 0 0 1 1 1v6zM2 4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1.172a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 9.172 2H6.828a2 2 0 0 0-1.414.586l-.828.828A2 2 0 0 1 3.172 4H2z" />
@@ -22,7 +22,7 @@ const Svg = (props) => {
         width="16"
         height="16"
         fill="currentColor"
-        class="icon clipboard-check"
+        className="icon clipboard-check"
         viewBox="0 0 16 16"
       >
         <path
@@ -39,7 +39,7 @@ const Svg = (props) => {
         width="16"
         height="16"
         fill="currentColor"
-        class="icon clipboard"
+        className="icon clipboard"
         viewBox="0 0 16 16"
       >
         <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z" />
@@ -52,7 +52,7 @@ const Svg = (props) => {
         width="16"
         height="16"
         fill="currentColor"
-        class="icon save"
+        className="icon save"
         viewBox="0 0 16 16"
       >
         <path d="M2 1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H9.5a1 1 0 0 0-1 1v7.293l2.646-2.647a.5.5 0 0 1 .708.708l-3.5 3.5a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L7.5 9.293V2a2 2 0 0 1 2-2H14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h2.5a.5.5 0 0 1 0 1H2z" />

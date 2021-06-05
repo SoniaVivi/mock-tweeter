@@ -52,7 +52,10 @@ const TweetText = (props) => {
         </div>
       )}
       display={(toggleFunc) => (
-        <p className="tweet focus text" onClick={toggleFunc}>
+        <p
+          className={`tweet text${props.topLevel ? " top-level" : ""}`}
+          onClick={toggleFunc}
+        >
           {text}
         </p>
       )}

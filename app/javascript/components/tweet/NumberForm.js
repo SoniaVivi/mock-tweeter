@@ -41,7 +41,7 @@ const NumberForm = (props) => {
           className="tweet-metadata"
           value={fieldValue}
           onChange={(e) =>
-            hasOnlyDigits(e.target.value) ? setFieldValue(e.target.value) : ""
+            hasOnlyDigits(e.target.value) && setFieldValue(e.target.value)
           }
         ></input>
         <div className="tweet-metadata arrow-container">

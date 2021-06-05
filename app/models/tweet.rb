@@ -1,5 +1,7 @@
 class Tweet < ApplicationRecord
   after_initialize :set_defaults, unless: :persisted?
+  belongs_to :parent
+  has_many :children, class_name: 'Tweet'
 
   private
 
