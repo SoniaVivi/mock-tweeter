@@ -1,7 +1,45 @@
+.tweet.text.top-level {
+  font-size: 23px;
+  line-height: 28px;
+  color: #10141a;
+
+  textarea {
+    min-width: 100%;
+    min-height: 100px;
+  }
+}
+
+.tweet.container {
+  display: flex;
+  padding: 0 16px;
+  padding-top: 12px;
+
+  &.top-level {
+    flex-flow: column nowrap;
+  }
+}
+
+.wrapper.reply {
+  display: flex;
+  flex-flow: column nowrap;
+
+  .tweet.text {
+    padding-top: 2px;
+  }
+}
+
 .icon {
   $size: 22.5px;
   width: 22px;
   height: 19px;
+
+  &.share {
+    $size: 19px;
+    max-width: $size;
+    max-height: $size;
+    min-width: $size;
+    min-height: $size;
+  }
 }
 
 .editor {
@@ -19,13 +57,6 @@
 
   &.red-border {
     border-color: #ff4422;
-  }
-}
-
-.tweet-text {
-  textarea {
-    min-width: 100%;
-    min-height: 100px;
   }
 }
 
@@ -61,8 +92,7 @@
   }
 }
 
-.tweet,
-.poster.row {
+.tweet {
   padding-top: 12px;
 }
 
@@ -90,15 +120,20 @@
   border-bottom: $border;
 }
 
-.tweet.container {
-  padding: 0 16px;
-}
+.name.container {
+  display: flex;
+  width: 100%;
+  padding-top: 5px;
 
-.tweet.focus.text {
-  word-break: break-word;
-  font-size: 23px;
-  line-height: 28px;
-  color: #10141a;
+  .dot-menu {
+    align-self: flex-start;
+    margin-left: auto;
+    height: 10px;
+  }
+
+  &:not(.top-level) {
+    height: 25px;
+  }
 }
 
 .name.column {
@@ -106,6 +141,12 @@
 
   * {
     height: 50%;
+  }
+}
+
+.name.row {
+  > *:first-child {
+    margin-right: 4px;
   }
 }
 
@@ -119,14 +160,16 @@
 
 .user-icon {
   $size: 50px;
-  width: $size;
-  height: $size;
+  max-width: $size;
+  max-height: $size;
+  min-width: $size;
+  min-height: $size;
   margin-right: 12px;
   border-radius: 50%;
   border: 1px solid #ffffff;
 }
 
-.date.focus {
+.date {
   $padding: 16px;
   align-items: flex-start;
   height: 50px;
@@ -140,6 +183,23 @@
   padding-top: $padding;
   padding-bottom: $padding;
   fill: $blue-gray;
+}
+
+.tweet-options.reply {
+  width: 100%;
+  margin-left: -40px;
+
+  > div:not(.active) {
+    display: flex;
+  }
+  img:not(.share) {
+    $size: 18px;
+    max-width: $size;
+    max-height: $size - 3px;
+    min-width: $size;
+    min-height: $size - 3px;
+    margin-right: 12px;
+  }
 }
 
 .tweet-metadata.row {
@@ -179,37 +239,6 @@
 span.time.separator {
   width: 5px;
   margin-right: 2px;
-}
-
-.container.source-label {
-  &.active {
-    display: flex;
-    flex-flow: column nowrap;
-    margin-top: -5px;
-    padding-top: 5px;
-    border: 1px solid $editor-color;
-    border-radius: $border-radius;
-    background-color: #ffffff;
-
-    .header.source-label {
-      padding: 0 5px;
-    }
-  }
-}
-
-.child.source-label {
-  display: flex;
-  align-items: center;
-  height: 20px;
-  padding: 0 5px;
-
-  &.active {
-    background-color: $selected-color;
-  }
-
-  &:hover:not(.active) {
-    background-color: $light-gray;
-  }
 }
 
 input.source-label {
@@ -291,4 +320,58 @@ input.tweet-metadata {
   height: 100px;
   border: 2px dashed #000000;
   background-color: rgba(255, 255, 255, 1);
+}
+
+.replying-to.container {
+  margin-top: 3px;
+  color: $blue-gray;
+
+  a {
+    color: $blue;
+  }
+}
+
+.container.dropdown.age-form {
+  z-index: 6;
+  height: 68px;
+  background-color: #ffffff;
+
+  > .subtitle.visible {
+    margin-left: 5px;
+  }
+}
+
+.name.container > .calender-header.active {
+  margin-left: 5px;
+}
+
+.icon-container {
+  $width: 39px;
+  position: relative;
+  display: flex;
+  max-width: $width;
+  min-width: $width;
+
+  &.active {
+    display: flex;
+  }
+
+  .tweet-metadata.container {
+    margin-left: 5px;
+  }
+  /* prettier-ignore */
+  .counter { /* stylelint-disable-line */
+    position: absolute;
+    display: flex;
+    right: 36px;
+    width: 100px;
+  }
+}
+
+.wrapper.reply input.name.editor {
+  max-width: 180px;
+}
+
+.reply.divider.container {
+  padding-top: 3px;
 }

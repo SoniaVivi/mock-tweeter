@@ -4,20 +4,13 @@ import Form from "./Form";
 import onOutsideClick from "../onOutsideClick";
 import DateDisplay from "./DateDisplay";
 import CalenderMenu from "./CalenderMenu";
-import { daysInMonth, fromatDate, months } from "./dateHelpers";
+import { setByDateUnit } from "./dateHelpers";
 
 const Calender = (props) => {
   const [selectedDate, setSelectedDate] = useState(new Date(props.date));
   const modifyDate = (i, attribute) =>
     setSelectedDate((prevDate) => {
-      let newDate = prevDate;
-      if (attribute == "day") {
-        newDate.setUTCDate(i);
-      } else if (attribute == "month") {
-        newDate.setUTCMonth(i);
-      } else if (attribute == "year") {
-        newDate.setUTCFullYear(prevDate.getUTCFullYear() + i);
-      }
+      let newDate = setByDateUnit(prevDate, attribute, i);
       setDisplay(
         <DateDisplay
           date={newDate.getUTCMonth()}

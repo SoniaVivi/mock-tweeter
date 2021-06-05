@@ -6,6 +6,7 @@
   src: url(font-path("NimbusSansL-Bol.otf"));
   border: unset;
   font-size: 15px;
+  line-height: 20px;
   word-break: break-word;
   text-decoration: unset;
 
@@ -94,4 +95,67 @@
 .popup {
   font-size: 18px;
   font-weight: 600;
+}
+
+.container.dropdown {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: flex-start;
+  margin-top: -5px;
+  padding-top: 5px;
+  border: 1px solid $editor-color;
+  border-radius: $border-radius;
+  background-color: #ffffff;
+
+  .header {
+    padding: 0 5px;
+  }
+}
+
+.dropdown > .child {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  height: 20px;
+  padding: 0 5px;
+
+  &:hover {
+    background-color: $light-gray;
+  }
+
+  &.active {
+    background-color: $selected-color;
+  }
+}
+
+.hide-children *:not(.visible) {
+  display: none;
+}
+
+.age-form.container {
+  margin-top: -3px;
+  margin-left: 5px;
+}
+
+input.age-form {
+  padding-top: 4px;
+}
+
+.vertical.divider {
+  $width: 2px;
+  $height: 100%;
+  flex-grow: 1;
+  align-self: center;
+  max-width: $width;
+  min-width: $width;
+  margin-left: -12px;
+  background-color: $divider;
+
+  &.parent {
+    margin-top: 3px;
+  }
+
+  &.child {
+    margin-bottom: 3px;
+  }
 }

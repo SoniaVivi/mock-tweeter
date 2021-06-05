@@ -15,7 +15,7 @@ const SourceLabel = (props) => {
   ];
 
   return (
-    <div className={`source-label container${showEditor ? " active" : ""}`}>
+    <div className={`${showEditor ? "dropdown container active" : ""}`}>
       {!showForm ? (
         <span
           onClick={(e) => {
@@ -45,25 +45,20 @@ const SourceLabel = (props) => {
           }}
         ></input>
       )}
-      <div className={showEditor ? "dropdown source-label" : "hidden"}>
+      <div className={showEditor ? "dropdown" : "hidden"}>
         {labels.map((label) => {
           return (
             <div
               onClick={(e) => {
                 if (label == "Custom") {
                   setShowForm(true);
-                  // onOutsideClick(
-                  //   { target: e.target.parentNode.parentNode },
-                  //   () => setShowForm((prevState) => !prevState),
-                  //   () => {}
-                  // );
                 } else {
                   setCurrentLabel(label);
                   props.setLabel(label);
                 }
                 setShowEditor((prevState) => !prevState);
               }}
-              className={`source-label child${
+              className={`dropdown child${
                 label == currentLabel ? " active" : ""
               }`}
             >

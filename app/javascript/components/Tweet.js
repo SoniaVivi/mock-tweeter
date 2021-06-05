@@ -5,84 +5,104 @@ import Reply from "./svgs/Reply";
 import Retweet from "./svgs/Retweet";
 import Share from "./svgs/Share";
 import TweetText from "./tweet/TweetText";
-import NameForm from "./tweet/NameForm";
-import Calender from "./tweet/Calender";
-import TimeForm from "./tweet/TimeForm";
-import SourceLabel from "./tweet/SourceLabel";
-import NumberForm from "./tweet/NumberForm";
 import ProfileForm from "./tweet/ProfileForm";
+import Metadata from "./tweet/topLevel/Metadata";
+import TweetTimeDisplay from "./tweet/topLevel/TweetTimeDisplay";
+import NameDisplay from "./tweet/NameDisplay";
+import ChildIconsContainer from "./tweet/ChildIconsContainer";
 
 const Tweet = (props) => {
-  const [data, setData] = useState(props.data);
-  const createModifyAttributeFunction = (keyName) => {
-    return (newValue) => {
-      setData((prevState) => {
-        console.log({ ...prevState, ...{ [keyName]: newValue } });
-        return { ...prevState, ...{ [keyName]: newValue } };
-      });
-    };
+  const data = props.data[props.id];
+  const className = props.className || " ";
+  const isTopLevel = className == "top-level";
+  const createModifyDataFunction = (keyName) => (newValue) => {
+    props.setData((prevState) => {
+      return {
+        ...prevState,
+        [props.id]: { ...data, ...{ [keyName]: newValue } },
+      };
+    });
   };
 
+  const topLevelElements = [
+    <TweetTimeDisplay
+      postedOn={data.postedOn}
+      label={data.label}
+      setPostedOn={createModifyDataFunction("postedOn")}
+      setLabel={createModifyDataFunction("label")}
+    />,
+    <Metadata
+      retweets={data.retweets}
+      likes={data.likes}
+      setRetweets={createModifyDataFunction("retweets")}
+      setLikes={createModifyDataFunction("likes")}
+    />,
+  ];
+
+  const nameDisplayElement = (
+    <NameDisplay
+      topLevel={isTopLevel}
+      displayName={data.displayName}
+      name={data.name}
+      postedOn={data.postedOn}
+      setDisplayName={createModifyDataFunction("displayName")}
+      setName={createModifyDataFunction("name")}
+      setPostedOn={createModifyDataFunction("postedOn")}
+      addChild={props.addTweet}
+    />
+  );
+
   return (
-    <div className="tweet container bottom-border">
-      <div className="poster row">
+    <div
+      className={`tweet container ${className}${
+        props.dividerParent
+          ? " divider-parent"
+          : props.dividerChild
+          ? " divider  bottom-border"
+          : " bottom-border"
+      }`}
+    >
+      <div
+        className={`poster ${
+          !!props.dividerParent || !!props.dividerChild ? "column" : "row"
+        }`}
+      >
         <ProfileForm
           profileImage={data.profileImage}
-          setProfileImage={createModifyAttributeFunction("profileImage")}
+          setProfileImage={createModifyDataFunction("profileImage")}
         />
-        <div className="name column">
-          <NameForm
-            name={data.displayName}
-            type="display"
-            setName={createModifyAttributeFunction("displayName")}
-          />
-          <NameForm
-            name={data.name}
-            type="user"
-            setName={createModifyAttributeFunction("name")}
-          />
-        </div>
-        <button className="dot-menu">...</button>
+        {isTopLevel ? nameDisplayElement : ""}
+        {!!props.dividerParent ? (
+          <div className="vertical divider parent"></div>
+        ) : (
+          ""
+        )}
       </div>
-      <TweetText
-        body={data.body}
-        setBody={createModifyAttributeFunction("body")}
-      />
-      <div className="row date focus subtitle">
-        <TimeForm
-          time={data.postedOn}
-          setTime={createModifyAttributeFunction("postedOn")}
+      <div className={`wrapper ${className}`}>
+        {!isTopLevel ? nameDisplayElement : ""}
+        {props.child ? (
+          <span className="replying-to container">
+            Replying to <a>@{props.data[props.parentId].name}</a>
+          </span>
+        ) : (
+          ""
+        )}
+        <TweetText
+          body={data.body}
+          setBody={createModifyDataFunction("body")}
+          topLevel={isTopLevel}
         />
-        <span className="dot-divider"></span>
-        <Calender
-          date={data.postedOn}
-          setDate={createModifyAttributeFunction("postedOn")}
+        {isTopLevel ? topLevelElements : ""}
+        <ChildIconsContainer
+          className={className}
+          editable={!isTopLevel}
+          replies={data.replies}
+          retweets={data.retweets}
+          likes={data.likes}
+          setReplies={createModifyDataFunction("replies")}
+          setRetweets={createModifyDataFunction("retweets")}
+          setLikes={createModifyDataFunction("likes")}
         />
-        <span className="dot-divider"></span>
-        <SourceLabel
-          label={data.label}
-          setLabel={createModifyAttributeFunction("label")}
-        />
-      </div>
-      <div className="row top-border tweet-metadata">
-        <NumberForm
-          value={data.retweets}
-          setValue={createModifyAttributeFunction("retweets")}
-          fieldName={"Retweets"}
-          focus={true}
-        />
-        <NumberForm
-          value={data.likes}
-          setValue={createModifyAttributeFunction("likes")}
-          fieldName={"Likes"}
-          focus={true}
-        />
-      </div>
-      <div className="row top-border tweet-options focus">
-        <Reply />
-        <Retweet />
-        <Heart />
-        <Share />
       </div>
     </div>
   );

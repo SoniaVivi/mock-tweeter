@@ -4,7 +4,7 @@ import Arrow from "../svgs/Arrow";
 import onOutsideClick from "../onOutsideClick";
 
 const NumberForm = (props) => {
-  const [showEditor, setShowEditor] = useState(false);
+  const [showEditor, setShowEditor] = useState(!!props.onlyForm);
   const [fieldValue, setFieldValue] = useState(props.value);
   const toggle = () => setShowEditor((prevState) => !prevState);
   const hasOnlyDigits = (val) => /^\d+$/.test(val);
@@ -35,13 +35,15 @@ const NumberForm = (props) => {
       <div
         className={`tweet-metadata container active${
           props.focus ? " focus" : ""
-        }`}
+        } ${props.className}`}
       >
         <input
           className="tweet-metadata"
           value={fieldValue}
           onChange={(e) =>
-            hasOnlyDigits(e.target.value) ? setFieldValue(e.target.value) : ""
+            !showEditor
+              ? hasOnlyDigits(e.target.value) && setFieldValue(e.target.value)
+              : (props.setValue(e.target.value), setFieldValue(e.target.value))
           }
         ></input>
         <div className="tweet-metadata arrow-container">
