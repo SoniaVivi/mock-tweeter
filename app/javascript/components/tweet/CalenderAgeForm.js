@@ -3,6 +3,7 @@ import CalenderMenu from "./CalenderMenu";
 import onOutsideClick from "../onOutsideClick";
 import AgeForm from "./AgeForm";
 import DateDisplay from "./DateDisplay";
+import { setByDateUnit } from "./dateHelpers";
 
 const CalenderAgeForm = (props) => {
   const [showDropdown, setShowDropdown] = useState(false);
@@ -22,17 +23,9 @@ const CalenderAgeForm = (props) => {
         children={
           <CalenderMenu
             date={date}
-            modifyDate={(i, attribute) => {
-              let newDate = date;
-              if (attribute == "day") {
-                newDate.setUTCDate(i);
-              } else if (attribute == "month") {
-                newDate.setUTCMonth(i);
-              } else if (attribute == "year") {
-                newDate.setUTCFullYear(date.getUTCFullYear() + i);
-              }
-              props.setTime(newDate.toUTCString());
-            }}
+            modifyDate={(i, attribute) =>
+              props.setTime(setByDateUnit(date, attribute, i).toUTCString())
+            }
           />
         }
       />
@@ -49,7 +42,6 @@ const CalenderAgeForm = (props) => {
             if (showDropdown) {
               return;
             }
-            console.log(e.target.parentNode);
             setShowDropdown(true);
             onOutsideClick(
               { target: e.target.parentNode.parentNode },

@@ -81,3 +81,15 @@ export const setUTCUnits = (date, timeUnits = {}, dateIsPM = null) => {
     { minutes: newDate.getUTCMinutes(), hours: newDate.getUTCHours() },
   ];
 };
+
+export const setByDateUnit = (date, unit, i) => {
+  let newDate = date;
+  if (unit == "day") {
+    newDate.setUTCDate(i);
+  } else if (unit == "month") {
+    newDate.setUTCMonth(i);
+  } else if (unit == "year") {
+    newDate.setUTCFullYear(prevDate.getUTCFullYear() + i);
+  }
+  return newDate;
+};
