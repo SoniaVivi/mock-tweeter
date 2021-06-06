@@ -4,7 +4,6 @@ import Form from "./Form";
 import onOutsideClick from "../onOutsideClick";
 import DateDisplay from "./DateDisplay";
 import CalenderMenu from "./CalenderMenu";
-import { daysInMonth, fromatDate, months } from "./dateHelpers";
 
 const Calender = (props) => {
   const [selectedDate, setSelectedDate] = useState(new Date(props.date));

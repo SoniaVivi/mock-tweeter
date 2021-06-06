@@ -47,8 +47,10 @@ const Tweet = (props) => {
       topLevel={isTopLevel}
       displayName={data.displayName}
       name={data.name}
+      postedOn={data.postedOn}
       setDisplayName={createModifyDataFunction("displayName")}
       setName={createModifyDataFunction("name")}
+      setPostedOn={createModifyDataFunction("postedOn")}
     />
   );
 

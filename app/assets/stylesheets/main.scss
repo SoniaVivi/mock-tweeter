@@ -100,6 +100,7 @@
 .container.dropdown {
   display: flex;
   flex-flow: column nowrap;
+  align-items: flex-start;
   margin-top: -5px;
   padding-top: 5px;
   border: 1px solid $editor-color;
@@ -113,7 +114,8 @@
 
 .dropdown > .child {
   display: flex;
-  align-items: center;
+  flex-flow: column nowrap;
+  justify-content: center;
   height: 20px;
   padding: 0 5px;
 
@@ -124,4 +126,8 @@
   &.active {
     background-color: $selected-color;
   }
+}
+
+.hide-children *:not(.visible) {
+  display: none;
 }

@@ -122,6 +122,10 @@
     margin-left: auto;
     height: 10px;
   }
+
+  &:not(.top-level) {
+    height: 25px;
+  }
 }
 
 .name.column {
@@ -169,6 +173,14 @@
   padding-top: $padding;
   padding-bottom: $padding;
   fill: $blue-gray;
+
+  &.reply > img {
+    $size: 16px;
+    max-width: $size;
+    max-height: $size;
+    min-width: $size;
+    min-height: $size;
+  }
 }
 
 .tweet-metadata.row {
@@ -300,10 +312,8 @@ input.tweet-metadata {
   }
 }
 
-.tweet-options.reply > img {
-  $size: 16px;
-  max-width: $size;
-  max-height: $size;
-  min-width: $size;
-  min-height: $size;
+.container.dropdown.age-form {
+  z-index: 6;
+  height: 68px;
+  background-color: #ffffff;
 }

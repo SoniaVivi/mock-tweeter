@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import NameForm from "./NameForm";
-import TimeForm from "./TimeForm";
-import Calender from "./Calender";
+import CalenderAgeForm from "./CalenderAgeForm";
 
 const NameDisplay = (props) => {
   const topLevel = props.topLevel;
@@ -16,13 +15,11 @@ const NameDisplay = (props) => {
         />
         <NameForm name={props.name} type="user" setName={props.setName} />
       </div>
-      {/* ===============PLACEHOLDER=============== */}
-      {!topLevel
-        ? [
-            <span className="dot-divider"></span>,
-            <span className="subtitle">Jun 2</span>,
-          ]
-        : ""}
+      {!topLevel ? (
+        <CalenderAgeForm time={props.postedOn} setTime={props.setPostedOn} />
+      ) : (
+        ""
+      )}
       <button className="dot-menu">...</button>
     </div>
   );
