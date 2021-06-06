@@ -210,37 +210,6 @@ span.time.separator {
   margin-right: 2px;
 }
 
-.container.source-label {
-  &.active {
-    display: flex;
-    flex-flow: column nowrap;
-    margin-top: -5px;
-    padding-top: 5px;
-    border: 1px solid $editor-color;
-    border-radius: $border-radius;
-    background-color: #ffffff;
-
-    .header.source-label {
-      padding: 0 5px;
-    }
-  }
-}
-
-.child.source-label {
-  display: flex;
-  align-items: center;
-  height: 20px;
-  padding: 0 5px;
-
-  &.active {
-    background-color: $selected-color;
-  }
-
-  &:hover:not(.active) {
-    background-color: $light-gray;
-  }
-}
-
 input.source-label {
   max-width: 100%;
   width: 130px;

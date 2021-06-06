@@ -96,3 +96,32 @@
   font-size: 18px;
   font-weight: 600;
 }
+
+.container.dropdown {
+  display: flex;
+  flex-flow: column nowrap;
+  margin-top: -5px;
+  padding-top: 5px;
+  border: 1px solid $editor-color;
+  border-radius: $border-radius;
+  background-color: #ffffff;
+
+  .header {
+    padding: 0 5px;
+  }
+}
+
+.dropdown > .child {
+  display: flex;
+  align-items: center;
+  height: 20px;
+  padding: 0 5px;
+
+  &:hover {
+    background-color: $light-gray;
+  }
+
+  &.active {
+    background-color: $selected-color;
+  }
+}

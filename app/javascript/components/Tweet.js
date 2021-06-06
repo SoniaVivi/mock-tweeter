@@ -16,6 +16,10 @@ const Tweet = (props) => {
   const isTopLevel = className == "top-level";
   const createModifyDataFunction = (keyName) => (newValue) => {
     props.setData((prevState) => {
+      console.log({
+        ...prevState,
+        [props.id]: { ...data, ...{ [keyName]: newValue } },
+      });
       return {
         ...prevState,
         [props.id]: { ...data, ...{ [keyName]: newValue } },
