@@ -131,3 +131,12 @@
 .hide-children *:not(.visible) {
   display: none;
 }
+
+.age-form.container {
+  margin-top: -3px;
+  margin-left: 5px;
+}
+
+input.age-form {
+  padding-top: 4px;
+}

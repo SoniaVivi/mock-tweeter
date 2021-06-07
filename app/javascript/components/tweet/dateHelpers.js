@@ -1,3 +1,5 @@
+import { format } from "prettier";
+
 export const daysInMonth = (date) => {
   let days = [];
   for (
@@ -14,6 +16,15 @@ export const formatDate = (date) =>
     month: "long",
     timeZone: "UTC",
   })} ${date.getUTCDate()}, ${date.getFullYear()}`;
+
+export const cropDate = (date) => {
+  return `${date
+    .toLocaleString("default", {
+      month: "long",
+      timeZone: "UTC",
+    })
+    .slice(0, 3)} ${date.getUTCDate()}`;
+};
 export const months = [
   "January",
   "February",
@@ -30,7 +41,7 @@ export const months = [
 ];
 
 export const formatTime = (time) =>
-  `${formatHours(time)}:${formatMinutes(time)}${isPM(time) ? "PM" : "AM"}`;
+  `${formatHours(time)}:${formatMinutes(time)} ${isPM(time) ? "PM" : "AM"}`;
 
 export const formatHours = (time) => {
   let hours = time.getUTCHours();
@@ -59,12 +70,17 @@ export const swapMeridiem = (time) => {
 export const setUTCUnits = (date, timeUnits = {}, dateIsPM = null) => {
   const isTimePM = !dateIsPM ? isPM(date) : dateIsPM;
   const units = {
+    seconds: date.getUTCSeconds(),
     minutes: date.getUTCMinutes(),
     hours: date.getUTCHours(),
     ...timeUnits,
   };
+  if (units.hours > 12) {
+    units.hours -= 12;
+  }
   let newDate = date;
   inRange(units.minutes, 0, 60) && newDate.setUTCMinutes(units.minutes);
+  inRange(units.seconds, 0, 60) && newDate.setUTCSeconds(units.seconds);
 
   if (!isTimePM && units.hours == 12) {
     newDate.setUTCHours(0);
@@ -92,4 +108,21 @@ export const setByDateUnit = (date, unit, i) => {
     newDate.setUTCFullYear(prevDate.getUTCFullYear() + i);
   }
   return newDate;
+};
+
+export const relativeTime = (time, formatStringFunction = null) => {
+  const formatString =
+    formatStringFunction ||
+    ((units, timePast) => `${timePast} ${units}${units ? " ago" : ""}`);
+  let getTime = {
+    hours: () => time.getUTCHours(),
+    minutes: () => time.getUTCMinutes(),
+    seconds: () => time.getUTCSeconds(),
+  };
+  for (const [units, func] of Object.entries(getTime)) {
+    let timePast = func();
+    if (timePast > 0) {
+      return formatString(units, timePast);
+    }
+  }
 };

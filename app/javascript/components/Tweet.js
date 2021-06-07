@@ -28,17 +28,17 @@ const Tweet = (props) => {
   };
 
   const topLevelElements = [
-    <Metadata
-      retweets={data.retweets}
-      likes={data.likes}
-      setRetweets={createModifyDataFunction("retweets")}
-      setLikes={createModifyDataFunction("likes")}
-    />,
     <TweetTimeDisplay
       postedOn={data.postedOn}
       label={data.label}
       setPostedOn={createModifyDataFunction("postedOn")}
       setLabel={createModifyDataFunction("label")}
+    />,
+    <Metadata
+      retweets={data.retweets}
+      likes={data.likes}
+      setRetweets={createModifyDataFunction("retweets")}
+      setLikes={createModifyDataFunction("likes")}
     />,
   ];
 

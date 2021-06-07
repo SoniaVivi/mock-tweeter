@@ -3,13 +3,27 @@ import CalenderMenu from "./CalenderMenu";
 import onOutsideClick from "../onOutsideClick";
 import AgeForm from "./AgeForm";
 import DateDisplay from "./DateDisplay";
-import { setByDateUnit } from "./dateHelpers";
+import { setByDateUnit, relativeTime, cropDate } from "./dateHelpers";
 
 const CalenderAgeForm = (props) => {
   const [showDropdown, setShowDropdown] = useState(false);
   const [showCalender, setShowCalender] = useState(false);
   const [showTimeForm, setShowTimeForm] = useState(false);
   const date = new Date(props.time);
+  const formatRelativeTime = (units, quantity) =>
+    `${quantity}${units.slice(0, 1)}`;
+
+  const dateDisplay = () => {
+    if (date.getUTCHours() || date.getUTCMinutes() || date.getUTCSeconds()) {
+      return (
+        <span className="subtitle visible">
+          {relativeTime(date, formatRelativeTime)}
+        </span>
+      );
+    } else {
+      return <span className="subtitle visible">{cropDate(date)}</span>;
+    }
+  };
 
   if (showTimeForm) {
     return <AgeForm date={date} setDate={props.setTime} />;
@@ -54,7 +68,7 @@ const CalenderAgeForm = (props) => {
             );
           }}
         >
-          <span className="subtitle visible">Jun 2</span>
+          {dateDisplay()}
           <div className="dropdown">
             <span
               className="child"
@@ -64,7 +78,18 @@ const CalenderAgeForm = (props) => {
             </span>
             <span
               className="child"
-              onClick={() => setShowCalender(true) || setShowDropdown(false)}
+              onClick={() => {
+                setShowCalender(true) || setShowDropdown(false);
+                props.setTime(
+                  (() => {
+                    let newDate = date;
+                    newDate.setUTCHours(0);
+                    newDate.setUTCMinutes(0);
+                    newDate.setUTCSeconds(0);
+                    return newDate.toUTCString();
+                  })()
+                );
+              }}
             >
               Set by Date
             </span>
