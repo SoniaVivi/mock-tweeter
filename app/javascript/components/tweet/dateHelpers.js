@@ -68,28 +68,30 @@ export const swapMeridiem = (time) => {
 };
 
 export const setUTCUnits = (date, timeUnits = {}, dateIsPM = null) => {
-  const isTimePM = !dateIsPM ? isPM(date) : dateIsPM;
+  const isTimePM = !dateIsPM ? isPM(date) || timeUnits.hours > 11 : dateIsPM;
   const units = {
     seconds: date.getUTCSeconds(),
     minutes: date.getUTCMinutes(),
     hours: date.getUTCHours(),
     ...timeUnits,
   };
-  if (units.hours > 12) {
-    units.hours -= 12;
-  }
+
   let newDate = date;
   inRange(units.minutes, 0, 60) && newDate.setUTCMinutes(units.minutes);
   inRange(units.seconds, 0, 60) && newDate.setUTCSeconds(units.seconds);
 
-  if (!isTimePM && units.hours == 12) {
-    newDate.setUTCHours(0);
-  } else if (inRange(units.hours, 1, 12)) {
+  if (dateIsPM !== null) {
+    if (!isTimePM && units.hours == 12) {
+      newDate.setUTCHours(0);
+    } else if (inRange(units.hours, 0, 12)) {
+      newDate.setUTCHours(units.hours);
+    }
+    const hours = newDate.getUTCHours();
+    if ((hours < 11 && isTimePM) || (hours > 12 && !isTimePM)) {
+      newDate = swapMeridiem(newDate);
+    }
+  } else {
     newDate.setUTCHours(units.hours);
-  }
-  const hours = newDate.getUTCHours();
-  if ((hours < 11 && isTimePM) || (hours > 12 && !isTimePM)) {
-    newDate = swapMeridiem(newDate);
   }
 
   return [
