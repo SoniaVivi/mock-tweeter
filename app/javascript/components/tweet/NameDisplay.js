@@ -20,7 +20,9 @@ const NameDisplay = (props) => {
       ) : (
         ""
       )}
-      <button className="dot-menu">...</button>
+      <button className="dot-menu" onClick={props.addChild}>
+        ...
+      </button>
     </div>
   );
 };

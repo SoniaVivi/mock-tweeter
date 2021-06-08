@@ -140,3 +140,22 @@
 input.age-form {
   padding-top: 4px;
 }
+
+.vertical.divider {
+  $width: 2px;
+  $height: 100%;
+  flex-grow: 1;
+  align-self: center;
+  max-width: $width;
+  min-width: $width;
+  margin-left: -12px;
+  background-color: $divider;
+
+  &.parent {
+    margin-top: 3px;
+  }
+
+  &.child {
+    margin-bottom: 3px;
+  }
+}

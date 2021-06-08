@@ -359,8 +359,8 @@ input.tweet-metadata {
   .tweet-metadata.container {
     margin-left: 5px;
   }
-
-  .counter {
+  /* prettier-ignore */
+  .counter { /* stylelint-disable-line */
     position: absolute;
     display: flex;
     right: 36px;
@@ -370,4 +370,8 @@ input.tweet-metadata {
 
 .wrapper.reply input.name.editor {
   max-width: 180px;
+}
+
+.reply.divider.container {
+  padding-top: 3px;
 }

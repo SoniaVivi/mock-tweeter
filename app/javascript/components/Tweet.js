@@ -48,17 +48,35 @@ const Tweet = (props) => {
       setDisplayName={createModifyDataFunction("displayName")}
       setName={createModifyDataFunction("name")}
       setPostedOn={createModifyDataFunction("postedOn")}
+      addChild={props.addTweet}
     />
   );
 
   return (
-    <div className={`tweet container bottom-border ${className}`}>
-      <div className="poster row">
+    <div
+      className={`tweet container ${className}${
+        props.dividerParent
+          ? " divider-parent"
+          : props.dividerChild
+          ? " divider  bottom-border"
+          : " bottom-border"
+      }`}
+    >
+      <div
+        className={`poster ${
+          !!props.dividerParent || !!props.dividerChild ? "column" : "row"
+        }`}
+      >
         <ProfileForm
           profileImage={data.profileImage}
           setProfileImage={createModifyDataFunction("profileImage")}
         />
         {isTopLevel ? nameDisplayElement : ""}
+        {!!props.dividerParent ? (
+          <div className="vertical divider parent"></div>
+        ) : (
+          ""
+        )}
       </div>
       <div className={`wrapper ${className}`}>
         {!isTopLevel ? nameDisplayElement : ""}
