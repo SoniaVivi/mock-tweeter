@@ -9,6 +9,7 @@ import ProfileForm from "./tweet/ProfileForm";
 import Metadata from "./tweet/topLevel/Metadata";
 import TweetTimeDisplay from "./tweet/topLevel/TweetTimeDisplay";
 import NameDisplay from "./tweet/NameDisplay";
+import ChildIconsContainer from "./tweet/ChildIconsContainer";
 
 const Tweet = (props) => {
   const data = props.data[props.id];
@@ -16,10 +17,6 @@ const Tweet = (props) => {
   const isTopLevel = className == "top-level";
   const createModifyDataFunction = (keyName) => (newValue) => {
     props.setData((prevState) => {
-      console.log({
-        ...prevState,
-        [props.id]: { ...data, ...{ [keyName]: newValue } },
-      });
       return {
         ...prevState,
         [props.id]: { ...data, ...{ [keyName]: newValue } },
@@ -78,16 +75,16 @@ const Tweet = (props) => {
           topLevel={isTopLevel}
         />
         {isTopLevel ? topLevelElements : ""}
-        <div
-          className={`row tweet-options ${className}${
-            isTopLevel ? " top-border" : ""
-          }`}
-        >
-          <Reply />
-          <Retweet />
-          <Heart />
-          <Share />
-        </div>
+        <ChildIconsContainer
+          className={className}
+          editable={!isTopLevel}
+          replies={data.replies}
+          retweets={data.retweets}
+          likes={data.likes}
+          setReplies={createModifyDataFunction("replies")}
+          setRetweets={createModifyDataFunction("retweets")}
+          setLikes={createModifyDataFunction("likes")}
+        />
       </div>
     </div>
   );

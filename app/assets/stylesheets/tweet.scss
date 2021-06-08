@@ -32,6 +32,14 @@
   $size: 22.5px;
   width: 22px;
   height: 19px;
+
+  &.share {
+    $size: 19px;
+    max-width: $size;
+    max-height: $size;
+    min-width: $size;
+    min-height: $size;
+  }
 }
 
 .editor {
@@ -175,13 +183,22 @@
   padding-top: $padding;
   padding-bottom: $padding;
   fill: $blue-gray;
+}
 
-  &.reply > img {
-    $size: 16px;
+.tweet-options.reply {
+  width: 100%;
+  margin-left: -40px;
+
+  > div:not(.active) {
+    display: flex;
+  }
+  img:not(.share) {
+    $size: 18px;
     max-width: $size;
-    max-height: $size;
+    max-height: $size - 3px;
     min-width: $size;
-    min-height: $size;
+    min-height: $size - 3px;
+    margin-right: 12px;
   }
 }
 
@@ -326,4 +343,31 @@ input.tweet-metadata {
 
 .name.container > .calender-header.active {
   margin-left: 5px;
+}
+
+.icon-container {
+  $width: 39px;
+  position: relative;
+  display: flex;
+  max-width: $width;
+  min-width: $width;
+
+  &.active {
+    display: flex;
+  }
+
+  .tweet-metadata.container {
+    margin-left: 5px;
+  }
+
+  .counter {
+    position: absolute;
+    display: flex;
+    right: 36px;
+    width: 100px;
+  }
+}
+
+.wrapper.reply input.name.editor {
+  max-width: 180px;
 }
