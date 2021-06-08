@@ -107,7 +107,7 @@ export const setByDateUnit = (date, unit, i) => {
   } else if (unit == "month") {
     newDate.setUTCMonth(i);
   } else if (unit == "year") {
-    newDate.setUTCFullYear(prevDate.getUTCFullYear() + i);
+    newDate.setUTCFullYear(date.getUTCFullYear() + i);
   }
   return newDate;
 };

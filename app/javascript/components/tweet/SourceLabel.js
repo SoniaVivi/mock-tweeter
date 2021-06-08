@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import onOutsideClick from "../onOutsideClick";
+import onOutsideClick from "./helpers/onOutsideClick";
 
 const SourceLabel = (props) => {
   const [showEditor, setShowEditor] = useState(false);

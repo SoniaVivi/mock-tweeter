@@ -1,20 +1,18 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
-import Heart from "./svgs/Heart";
-import Reply from "./svgs/Reply";
-import Retweet from "./svgs/Retweet";
-import Share from "./svgs/Share";
+import React from "react";
 import TweetText from "./tweet/TweetText";
 import ProfileForm from "./tweet/ProfileForm";
 import Metadata from "./tweet/topLevel/Metadata";
 import TweetTimeDisplay from "./tweet/topLevel/TweetTimeDisplay";
-import NameDisplay from "./tweet/NameDisplay";
+import NameDisplay from "./tweet/name/NameDisplay";
 import ChildIconsContainer from "./tweet/ChildIconsContainer";
 
 const Tweet = (props) => {
   const data = props.data[props.id];
   const className = props.className || " ";
   const isTopLevel = className == "top-level";
+  let dividerClassName = null;
+  props.dividerParent && (dividerClassName += "divider-parent");
+  props.dividerChild && (dividerClassName += " divider  bottom-border");
   const createModifyDataFunction = (keyName) => (newValue) => {
     props.setData((prevState) => {
       return {
@@ -54,12 +52,8 @@ const Tweet = (props) => {
 
   return (
     <div
-      className={`tweet container ${className}${
-        props.dividerParent
-          ? " divider-parent"
-          : props.dividerChild
-          ? " divider  bottom-border"
-          : " bottom-border"
+      className={`tweet container ${className} ${
+        dividerClassName || "bottom-border"
       }`}
     >
       <div
@@ -80,7 +74,7 @@ const Tweet = (props) => {
       </div>
       <div className={`wrapper ${className}`}>
         {!isTopLevel ? nameDisplayElement : ""}
-        {props.child ? (
+        {!isTopLevel && props.dividerParent && !props.dividerChild ? (
           <span className="replying-to container">
             Replying to <a>@{props.data[props.parentId].name}</a>
           </span>

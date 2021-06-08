@@ -1,22 +1,27 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import Arrow from "../svgs/Arrow";
-import onOutsideClick from "../onOutsideClick";
+import onOutsideClick from "./helpers/onOutsideClick";
 
 const NumberForm = (props) => {
   const [showEditor, setShowEditor] = useState(!!props.onlyForm);
   const [fieldValue, setFieldValue] = useState(props.value);
   const toggle = () => setShowEditor((prevState) => !prevState);
   const hasOnlyDigits = (val) => /^\d+$/.test(val);
-  const arrowValueFunctions = {
-    increment: () => setFieldValue((prevVal) => prevVal + 1),
-    decrement: () => setFieldValue((prevVal) => prevVal - 1),
-  };
+  const increment = () =>
+    setFieldValue((prevVal) => {
+      !!props.onlyForm && props.setValue(prevVal + 1);
+      return prevVal + 1;
+    });
+  const decrement = () =>
+    setFieldValue((prevVal) => {
+      !!props.onlyForm && props.setValue(prevVal - 1);
+      return prevVal - 1;
+    });
+
   const saveValue = () => {
     let val;
-    setFieldValue((prevVal) => {
-      return (val = prevVal);
-    });
+    setFieldValue((prevVal) => (val = prevVal));
     props.setValue(val);
   };
 
@@ -40,15 +45,17 @@ const NumberForm = (props) => {
         <input
           className="tweet-metadata"
           value={fieldValue}
-          onChange={(e) =>
-            !showEditor
-              ? hasOnlyDigits(e.target.value) && setFieldValue(e.target.value)
-              : (props.setValue(e.target.value), setFieldValue(e.target.value))
-          }
+          onChange={(e) => {
+            if (!showEditor) {
+              hasOnlyDigits(e.target.value) && setFieldValue(e.target.value);
+            } else {
+              props.setValue(e.target.value), setFieldValue(e.target.value);
+            }
+          }}
         ></input>
         <div className="tweet-metadata arrow-container">
-          <Arrow type="up" onClick={arrowValueFunctions.increment} />
-          <Arrow type="down" onClick={arrowValueFunctions.decrement} />
+          <Arrow type="up" onClick={increment} />
+          <Arrow type="down" onClick={decrement} />
         </div>
         <span>{props.fieldName}</span>
       </div>
@@ -57,3 +64,4 @@ const NumberForm = (props) => {
 };
 
 export default NumberForm;
+// onChange={(e) => !!props.onlyForm && saveValue(e.target.value)}

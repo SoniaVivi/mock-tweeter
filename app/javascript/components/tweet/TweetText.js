@@ -14,7 +14,6 @@ const TweetText = (props) => {
           <textarea
             className="bottom-border"
             onChange={(e) => {
-              console.log(typeof e.target.value, e.target.value.length > 280);
               setOverFlow(e.target.value.length > 280);
               setText(e.target.value);
             }}

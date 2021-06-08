@@ -1,15 +1,10 @@
 import React, { useState } from "react";
-import PropTypes from "prop-types";
 import CalenderDay from "./CalenderDay";
-import Arrow from "../svgs/Arrow";
-import { daysInMonth, months } from "./dateHelpers";
+import Arrow from "../../svgs/Arrow";
+import { daysInMonth, months } from "../helpers/dateHelpers";
 
 const CalenderMenu = (props) => {
-  const [date, setDate] = useState(props.date);
-  const modifyDate = (i, attribute) => {
-    props.modifyDate(i, attribute);
-    setDate((prevDate) => prevDate + 1);
-  };
+  const modifyDate = props.modifyDate;
 
   return (
     <React.Fragment>
@@ -31,7 +26,7 @@ const CalenderMenu = (props) => {
             <CalenderDay
               onClick={() => modifyDate(i, "day")}
               date={i}
-              currentDay={props.date.getUTCDate()}
+              selected={props.date.getUTCDate() == i}
             />
           ))}
         </div>

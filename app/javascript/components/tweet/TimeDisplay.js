@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import Form from "./Form";
-import { formatTime } from "./dateHelpers";
+import { formatTime } from "./helpers/dateHelpers";
 
 const TimeDisplay = (props) => {
   return <span onClick={props.onClick}>{formatTime(props.time)}</span>;

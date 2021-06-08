@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import PropTypes from "prop-types";
 
 const Form = (props) => {
   const [showEditor, setShowEditor] = useState(false);

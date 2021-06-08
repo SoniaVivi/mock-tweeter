@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import NumberForm from "./NumberForm";
-import onOutsideClick from "../onOutsideClick";
+import onOutsideClick from "./helpers/onOutsideClick";
 
 const IconContainer = (props) => {
   const [showForm, setShowForm] = useState(false);
@@ -35,7 +35,7 @@ const IconContainer = (props) => {
             className={showForm ? "" : "hidden"}
             onlyForm={true}
             value={props.value}
-            setValue={props.setValue}
+            setValue={(val) => props.setValue(val)}
           />
         ) : (
           ""

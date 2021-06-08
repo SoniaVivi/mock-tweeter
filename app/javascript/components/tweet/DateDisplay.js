@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import Form from "./Form";
-import onOutsideClick from "../onOutsideClick";
-import { formatDate, months } from "./dateHelpers";
+import onOutsideClick from "./helpers/onOutsideClick";
+import { formatDate, months } from "./helpers/dateHelpers";
 
 const dateDisplay = (props) => {
   return (

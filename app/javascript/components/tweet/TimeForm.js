@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-import PropTypes from "prop-types";
 import Form from "./Form";
-import { isPM, swapMeridiem, setUTCUnits } from "./dateHelpers";
+import { isPM, swapMeridiem, setUTCUnits } from "./helpers/dateHelpers";
 import TimeDisplay from "./TimeDisplay";
-import onOutsideClick from "../onOutsideClick";
+import onOutsideClick from "./helpers/onOutsideClick";
 
 const TimeForm = (props) => {
   const [time, setTime] = useState(new Date(props.time));
@@ -13,9 +12,7 @@ const TimeForm = (props) => {
     hours: time.getUTCHours(),
   });
   const modifyMinutesHours = (attribute, value) =>
-    setMinutesHours((prevState) => {
-      return { ...prevState, [attribute]: value };
-    });
+    setMinutesHours((prevState) => ({ ...prevState, [attribute]: value }));
   const modifyTime = () => {
     //Variables outside of this function do not receive their most recent value
     //if it has been changed since the initial page load. Wrapping it in their

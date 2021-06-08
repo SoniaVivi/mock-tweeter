@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import CalenderMenu from "./CalenderMenu";
-import onOutsideClick from "../onOutsideClick";
+import CalenderMenu from "./calender/CalenderMenu";
+import onOutsideClick from "./helpers/onOutsideClick";
 import AgeForm from "./AgeForm";
 import DateDisplay from "./DateDisplay";
-import { setByDateUnit, relativeTime, cropDate } from "./dateHelpers";
+import { setByDateUnit, relativeTime, cropDate } from "./helpers/dateHelpers";
 
 const CalenderAgeForm = (props) => {
   const [showDropdown, setShowDropdown] = useState(false);
