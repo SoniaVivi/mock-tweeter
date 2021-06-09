@@ -1,24 +1,28 @@
-# README
+# Mock Tweeter
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Mock Tweeter is an application to quickly and easily create fake tweets for anything you wish
 
-Things you may want to cover:
+**Features**
 
-* Ruby version
+-Easily modify and change almost all aspects of a fake tweet
 
-* System dependencies
+-Fake tweets have a near identical appearence with real ones
 
-* Configuration
+-Tweet replies and replies to those replies
 
-* Database creation
+-Built in screenshot ability to easily and quickly share your cats rant with your friends
 
-* Database initialization
+**Usage**
 
-* How to run the test suite
+To change aspects of a tweet such as likes, profile image, etc. click it and it'll change to a simple form for easy modification. No inspect element required!
 
-* Services (job queues, cache servers, search engines, etc.)
+To add replies click on the "..." text at the top of the tweet
 
-* Deployment instructions
+**Running**
 
-* ...
+Run ```
+     bundle install
+
+     rails db:create
+
+     rails db:migrate``` to install, then `rails server`
