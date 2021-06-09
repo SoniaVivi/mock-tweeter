@@ -74,7 +74,7 @@ const Tweet = (props) => {
       </div>
       <div className={`wrapper ${className}`}>
         {!isTopLevel ? nameDisplayElement : ""}
-        {!isTopLevel && props.dividerParent && !props.dividerChild ? (
+        {!isTopLevel && !props.dividerChild ? (
           <span className="replying-to container">
             Replying to <a>@{props.data[props.parentId].name}</a>
           </span>

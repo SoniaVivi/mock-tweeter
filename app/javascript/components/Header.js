@@ -10,7 +10,7 @@ const Header = (props) => {
   const [errorMessage, setErrorMessage] = useState(null);
   const [imageURL, setImageURL] = useState(null);
   const takeScreenshot = () =>
-    html2canvas(document.querySelector(".tweet.container"), {
+    html2canvas(document.querySelector("[data-react-class='Thread']"), {
       allowTaint: true,
     }).then((result) => {
       setImage(result);
