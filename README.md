@@ -18,11 +18,14 @@ To change aspects of a tweet such as likes, profile image, etc. click it and it'
 
 To add replies click on the "..." text at the top of the tweet
 
-**Running**
+**Installation**
 
-Run ```
-     bundle install
+Run
+    
+    bundle install
 
-     rails db:create
-
-     rails db:migrate``` to install, then `rails server`
+    rails db:create
+    
+    rails db:migrate
+    
+Start up a local copy with `rails server`    
