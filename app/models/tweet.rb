@@ -8,11 +8,13 @@ class Tweet < ApplicationRecord
   def set_defaults
     #prettier-ignore
     self.body =
-      "Lorem ipsum dolor sit amet, eos ex omnesque adipiscing. Dicat feugiat
-      explicari sit no, in pro facilisis moderatius philosophia.".gsub(/[\t\n\r]/, " ")
+      "Click on any text to bring up an editor.
+       To add a reply, click on the \"...\".
+       To change the profile pic, click then drag your image into the box."
+                                                          .gsub(/[\t\n\r]/, " ")
                                                           .gsub(/ {2,}/, " ")
-    self.name = 'EdmondDantès'
-    self.display_name = 'The Count of Monte Cristo'
+    self.name = 'EdmondCatès'
+    self.display_name = 'The Cat of Monte Cristo'
     self.posted_on = DateTime.parse('9 May, 2021 9:47AM')
     self.label = 'Twitter Web App'
     self.retweets = 18

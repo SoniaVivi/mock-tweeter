@@ -15,10 +15,9 @@ const Tweet = (props) => {
   props.dividerChild && (dividerClassName += " divider  bottom-border");
   const createModifyDataFunction = (keyName) => (newValue) => {
     props.setData((prevState) => {
-      return {
-        ...prevState,
-        [props.id]: { ...data, ...{ [keyName]: newValue } },
-      };
+      let newData = prevState;
+      newData[props.id] = { ...data, ...{ [keyName]: newValue } };
+      return [...newData];
     });
   };
 

@@ -22,6 +22,7 @@
 .wrapper.reply {
   display: flex;
   flex-flow: column nowrap;
+  width: 100%;
 
   .tweet.text {
     padding-top: 2px;
