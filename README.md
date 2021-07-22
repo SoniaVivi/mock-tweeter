@@ -1,5 +1,7 @@
 # Mock Tweeter
 
+![Screenshot from 2021-07-22 15-01-03](https://user-images.githubusercontent.com/55420399/126715385-e3c83b16-dd30-401c-9fc6-8f2a37185666.png)
+
 Mock Tweeter is an application to quickly and easily create fake tweets for anything you wish
 
 **Features**
@@ -19,6 +21,7 @@ To change aspects of a tweet such as likes, profile image, etc. click it and it'
 To add replies click on the "..." text at the top of the tweet
 
 **Installation**
+
 
 Run
     
